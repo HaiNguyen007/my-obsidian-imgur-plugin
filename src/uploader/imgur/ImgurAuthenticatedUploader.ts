@@ -3,36 +3,27 @@ import * as fs from "fs";
 import ImgurClient from "../../imgur/ImgurClient";
 import ImageUploader from "../ImageUploader";
 
-function logImage(image: File) {
-  // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-  fs.appendFile("ImgurUploadedImages.log", `${image}\n`, (err) => {
-    if (err) {
-      console.error(err);
-    }
-  });
-}
-
-// const $image = 'https://i.imgur.com/abc123.jpg';
-
-// logImage($image);
-
-function createImgurLogFile() {
-  // const logFilePath = ".obsidian/plugins/obsidian-imgur-plugin/ImgurUploadedImages.log";
-  // const { basePath } = window.app.vault.adapter;
-  // console.log(basePath);
-
+function logImgurImages(image: File) {
   // eslint-disable-next-line prefer-destructuring, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
   const basePath = (window.app.vault.adapter as any).basePath;
-  console.log(basePath);
+  console.log("basePath: ", basePath);
 
+  // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
   const logFilePath = `${basePath}/.obsidian/plugins/obsidian-imgur-plugin/ImgurUploadedImages.log`;
-  fs.open(logFilePath, "w", (err) => {
+
+  fs.open(logFilePath, "a", (err) => {
     if (err) {
       console.error(err);
       return;
     }
 
-    console.log(`Created log file: ${logFilePath}`);
+    console.log(`Opened log file: ${logFilePath}`);
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+    fs.appendFile(logFilePath, `${image}\n`, (appendErr) => {
+      if (appendErr) {
+        console.error(appendErr);
+      }
+    });
   });
 }
 
@@ -47,8 +38,7 @@ export default class ImgurAuthenticatedUploader implements ImageUploader {
     const localImageLink = image.name;
     const returnImageLink = `${imgurImageLink}?${localImageLink}`;
     console.log("returnImageLink: ", returnImageLink);
-    createImgurLogFile();
-    logImage(image);
+    logImgurImages(image.name);
     return returnImageLink;
   }
 }
