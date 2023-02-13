@@ -17,6 +17,10 @@ function logImage(image: File) {
 // logImage($image);
 
 function createImgurLogFile() {
+  // const logFilePath = ".obsidian/plugins/obsidian-imgur-plugin/ImgurUploadedImages.log";
+  const { basePath } = window.app.vault.adapter;
+  console.log(basePath);
+
   const logFilePath =
     ".obsidian/plugins/obsidian-imgur-plugin/ImgurUploadedImages.log";
   fs.open(logFilePath, "w", (err) => {
@@ -35,7 +39,7 @@ export default class ImgurAuthenticatedUploader implements ImageUploader {
   async upload(image: File): Promise<string> {
     const imgurImageLink = (await this.client.upload(image)).data.link;
     // return (await this.client.upload(image)).data.link;
-    // console.log("imgurImageLink: ", imgurImageLink);
+    console.log("imgurImageLink: ", imgurImageLink);
     // console.log("image: ", image);
     const localImageLink = image.name;
     const returnImageLink = `${imgurImageLink}?${localImageLink}`;
