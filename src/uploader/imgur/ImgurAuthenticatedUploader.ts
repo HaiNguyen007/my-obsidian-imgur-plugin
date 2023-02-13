@@ -16,21 +16,24 @@ function logImgurImages(image: File) {
       return;
     }
 
-    // const logMessage =
-    //   `lastModifiedDate: ${image.lastModifiedDate}\n` +
-    //   `name: "${image.name}"\n` +
-    //   `path: "${image.path}"\n` +
-    //   `size: ${image.size}\n` +
-    //   `type: "${image.type}"\n` +
-    //   `webkitRelativePath: "${image.webkitRelativePath}"\n` +
-    //   `[[Prototype]]: ${Object.getPrototypeOf(image)}\n`;
+    // const today = new Date();
+    // const uploadedTimestamp = `${today.getFullYear().toString().substr(2)}${`0${
+    //   today.getMonth() + 1
+    // }`.slice(-2)}${`0${today.getDate()}`.slice(
+    //   -2
+    // )}-${g`0${today.getHours()}`.slice(-2)}${`0${today.getMinutes()}`.slice(
+    //   -2
+    // )}`;
 
     const logMessage =
       // eslint-disable-next-line no-useless-concat, @typescript-eslint/restrict-template-expressions
-      `lastModifiedDate: "${image.lastModifiedDate}", ` +
+      // const todayTimestamp = new Date().toString();
+      // `uploadedTimestamp: "${uploadedTimestamp}", ` +
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+      // `lastModifiedDate: "${image.lastModifiedDate}", ` +
       `name: "${image.name}", ` +
       // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-      `path: "${image.path}", ` +
+      // `path: "${image.path}", ` +
       `size: "${image.size}", ` +
       `type: "${image.type}", `;
 
