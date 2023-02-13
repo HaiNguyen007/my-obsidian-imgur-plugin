@@ -16,16 +16,21 @@ function logImgurImages(image: File) {
       return;
     }
 
+    const logMessage =
+      `lastModifiedDate: ${image.lastModifiedDate}\n` +
+      `name: "${image.name}"\n` +
+      `path: "${image.path}"\n` +
+      `size: ${image.size}\n` +
+      `type: "${image.type}"\n` +
+      `webkitRelativePath: "${image.webkitRelativePath}"\n` +
+      `[[Prototype]]: ${Object.getPrototypeOf(image)}\n`;
+
     // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-    fs.appendFile(
-      logFilePath,
-      `${JSON.stringify(image, null, 2)}\n`,
-      (error) => {
-        if (error) {
-          console.error(error);
-        }
+    fs.appendFile(logFilePath, `${logMessage}\n`, (error) => {
+      if (error) {
+        console.error(error);
       }
-    );
+    });
   });
 }
 
