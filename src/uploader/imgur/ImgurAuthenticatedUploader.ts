@@ -26,8 +26,11 @@ function logImgurImages(image: File) {
     //   `[[Prototype]]: ${Object.getPrototypeOf(image)}\n`;
 
     const logMessage =
-      // eslint-disable-next-line no-useless-concat
+      // eslint-disable-next-line no-useless-concat, @typescript-eslint/restrict-template-expressions
+      `lastModifiedDate: "${image.lastModifiedDate}", ` +
       `name: "${image.name}", ` +
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+      `path: "${image.path}", ` +
       `size: "${image.size}", ` +
       `type: "${image.type}", `;
 
