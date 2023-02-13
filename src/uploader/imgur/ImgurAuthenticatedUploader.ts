@@ -40,6 +40,7 @@ export default class ImgurAuthenticatedUploader implements ImageUploader {
     const localImageLink = image.name;
     const returnImageLink = `${imgurImageLink}?${localImageLink}`;
     console.log("returnImageLink: ", returnImageLink);
+    createImgurLogFile();
     logImage(image);
     return returnImageLink;
   }
