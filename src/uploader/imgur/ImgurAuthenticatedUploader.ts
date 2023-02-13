@@ -27,7 +27,9 @@ function logImgurImages(image: File) {
 
     const logMessage =
       // eslint-disable-next-line no-useless-concat
-      `name: "${image.name}"` + `size: ${image.size}` + `type: "${image.type}"`;
+      `name: "${image.name}", ` +
+      `size: "${image.size}", ` +
+      `type: "${image.type}", `;
 
     // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     fs.appendFile(logFilePath, `${logMessage}\n`, (error) => {
