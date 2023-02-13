@@ -25,8 +25,7 @@ function createImgurLogFile() {
   const basePath = (window.app.vault.adapter as any).basePath;
   console.log(basePath);
 
-  const logFilePath =
-    ".obsidian/plugins/obsidian-imgur-plugin/ImgurUploadedImages.log";
+  const logFilePath = `${basePath}/.obsidian/plugins/obsidian-imgur-plugin/ImgurUploadedImages.log`;
   fs.open(logFilePath, "w", (err) => {
     if (err) {
       console.error(err);
