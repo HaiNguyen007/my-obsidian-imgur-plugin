@@ -3,7 +3,7 @@ import * as fs from "fs";
 import ImgurClient from "../../imgur/ImgurClient";
 import ImageUploader from "../ImageUploader";
 
-function logImage(image: string) {
+function logImage(image: File) {
   fs.appendFile("ImgurUploadedImages.log", `${image}\n`, (err) => {
     if (err) {
       console.error(err);
