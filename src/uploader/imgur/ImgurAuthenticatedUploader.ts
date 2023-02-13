@@ -18,7 +18,11 @@ function logImage(image: File) {
 
 function createImgurLogFile() {
   // const logFilePath = ".obsidian/plugins/obsidian-imgur-plugin/ImgurUploadedImages.log";
-  const { basePath } = window.app.vault.adapter;
+  // const { basePath } = window.app.vault.adapter;
+  // console.log(basePath);
+
+  // eslint-disable-next-line prefer-destructuring, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+  const basePath = (window.app.vault.adapter as any).basePath;
   console.log(basePath);
 
   const logFilePath =
