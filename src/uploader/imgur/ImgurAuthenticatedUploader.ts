@@ -8,6 +8,7 @@ export default class ImgurAuthenticatedUploader implements ImageUploader {
     const imgurImageLink = (await this.client.upload(image)).data.link;
     // return (await this.client.upload(image)).data.link;
     console.log("imgurImageLink: ", imgurImageLink);
-    return imgurImageLink;
+    const localImageLink = "localImageLink";
+    return `${imgurImageLink}?${localImageLink}`;
   }
 }
