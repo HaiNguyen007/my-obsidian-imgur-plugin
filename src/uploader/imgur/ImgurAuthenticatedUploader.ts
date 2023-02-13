@@ -6,7 +6,6 @@ import ImageUploader from "../ImageUploader";
 function logImgurImages(image: File) {
   // eslint-disable-next-line prefer-destructuring, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
   const basePath = (window.app.vault.adapter as any).basePath;
-  console.log("basePath: ", basePath);
 
   // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
   const logFilePath = `${basePath}/.obsidian/plugins/obsidian-imgur-plugin/ImgurUploadedImages.log`;
@@ -17,13 +16,16 @@ function logImgurImages(image: File) {
       return;
     }
 
-    console.log(`Opened log file: ${logFilePath}`);
     // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-    fs.appendFile(logFilePath, `${image}\n`, (appendErr) => {
-      if (appendErr) {
-        console.error(appendErr);
+    fs.appendFile(
+      logFilePath,
+      `${JSON.stringify(image, null, 2)}\n`,
+      (error) => {
+        if (error) {
+          console.error(error);
+        }
       }
-    });
+    );
   });
 }
 
@@ -38,7 +40,7 @@ export default class ImgurAuthenticatedUploader implements ImageUploader {
     const localImageLink = image.name;
     const returnImageLink = `${imgurImageLink}?${localImageLink}`;
     console.log("returnImageLink: ", returnImageLink);
-    logImgurImages(image.name);
+    logImgurImages(image);
     return returnImageLink;
   }
 }
