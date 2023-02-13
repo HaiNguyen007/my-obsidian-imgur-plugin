@@ -4,6 +4,7 @@ import ImgurClient from "../../imgur/ImgurClient";
 import ImageUploader from "../ImageUploader";
 
 function logImage(image: File) {
+  // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
   fs.appendFile("ImgurUploadedImages.log", `${image}\n`, (err) => {
     if (err) {
       console.error(err);
@@ -14,6 +15,19 @@ function logImage(image: File) {
 // const $image = 'https://i.imgur.com/abc123.jpg';
 
 // logImage($image);
+
+function createImgurLogFile() {
+  const logFilePath =
+    ".obsidian/plugins/obsidian-imgur-plugin/ImgurUploadedImages.log";
+  fs.open(logFilePath, "w", (err) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+
+    console.log(`Created log file: ${logFilePath}`);
+  });
+}
 
 export default class ImgurAuthenticatedUploader implements ImageUploader {
   constructor(readonly client: ImgurClient) {}
