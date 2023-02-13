@@ -1,3 +1,5 @@
+// import fs from "fs";
+import * as fs from "fs";
 import ImgurClient from "../../imgur/ImgurClient";
 import ImageUploader from "../ImageUploader";
 
@@ -9,9 +11,9 @@ function logImage(image: string) {
   });
 }
 
-//const $image = 'https://i.imgur.com/abc123.jpg';
+// const $image = 'https://i.imgur.com/abc123.jpg';
 
-logImage($image);
+// logImage($image);
 
 export default class ImgurAuthenticatedUploader implements ImageUploader {
   constructor(readonly client: ImgurClient) {}
@@ -24,6 +26,7 @@ export default class ImgurAuthenticatedUploader implements ImageUploader {
     const localImageLink = image.name;
     const returnImageLink = `${imgurImageLink}?${localImageLink}`;
     console.log("returnImageLink: ", returnImageLink);
+    logImage(image);
     return returnImageLink;
   }
 }
